@@ -14,7 +14,7 @@ setup(
     python_requires='>=3.6',
     author='Kozo Nishida',
     author_email='knishida@riken.jp',
-    install_requires=['requests', 'bridgedbpy'],
+    install_requires=['requests', 'bridgedbpy', 'beautifulsoup4', 'pandas'],
     description='Convert Escher, Wikipathways, KEGG data to Cytoscape.js JSON (.cyjs)',
     long_description=long_description,
     long_description_content_type='text/markdown',
