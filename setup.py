@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 with open("README.md") as f:
     long_description = f.read()
@@ -14,7 +14,7 @@ setup(
     python_requires='>=3.6',
     author='Kozo Nishida',
     author_email='knishida@riken.jp',
-    install_requires=['requests', 'bridgedbpy', 'beautifulsoup4', 'pandas'],
+    install_requires=['requests', 'bridgedbpy', 'beautifulsoup4', 'pandas', 'biopython'],
     description='Convert Escher, Wikipathways, KEGG data to Cytoscape.js JSON (.cyjs)',
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -2,15 +2,13 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import bridgedbpy
-
 import pandas as pd
+from Bio.KEGG import REST
 
 __author__ = "Kozo Nishida"
 __email__ = "knishida@riken.jp"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __license__ = "MIT"
-
-KEGG_API_BASE = "http://rest.kegg.jp/"
 
 GLOBAL_PATHWAY_IDS = ("01100", "01110", "01120", "01130")
 
@@ -210,7 +208,7 @@ def global2cyjs(soup):
 
 
 def kegg2cyjs(identifier):
-    kgml = requests.get(KEGG_API_BASE + "get/" + identifier + "/kgml").content
+    kgml = REST.kegg_get(identifier, option="kgml")
     soup = BeautifulSoup(kgml, "xml")
     if identifier[3:] in GLOBAL_PATHWAY_IDS:
         return global2cyjs(soup)
