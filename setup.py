@@ -15,7 +15,7 @@ setup(
     author='Kozo Nishida',
     author_email='knishida@riken.jp',
     install_requires=['requests', 'bridgedbpy', 'beautifulsoup4', 'pandas', 'biopython'],
-    description='Convert Escher, Wikipathways, KEGG data to Cytoscape.js JSON (.cyjs)',
+    description='Convert Escher, Wikipathways, KEGG pathway data to Cytoscape.js JSON (.cyjs)',
     long_description=long_description,
     long_description_content_type='text/markdown',
     classifiers=['License :: OSI Approved :: MIT License',]
