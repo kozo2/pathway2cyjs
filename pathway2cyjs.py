@@ -346,6 +346,7 @@ def wp2cyelements(identifier):
             data["y"] = float(g["CenterY"])
             data["width"] = g["Width"]
             data["height"] = g["Height"]
+            data["type"] = "Metabolite"
 
             xref = wpn.find("Xref")
             if xref is not None:
