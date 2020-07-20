@@ -131,6 +131,63 @@ KEGG_GLOBAL_STYLE = [
     }
 ]
 
+WIKIPATHWAYS_STYLE = [
+    {
+        "format_version": "1.0",
+        "generated_by": "cytoscape-3.8.0",
+        "target_cytoscapejs_version": "~2.1",
+        "title": "wikipathways",
+        "style": [{
+            "selector": "node",
+            "css": {
+                "border-width": 3.0,
+                "width": 75.0,
+                "font-family": "SansSerif.plain",
+                "font-weight": "normal",
+                "text-valign": "center",
+                "text-halign": "center",
+                "text-opacity": 1.0,
+                "border-opacity": 1.0,
+                "shape": "roundrectangle",
+                "height": 35.0,
+                "border-color": "rgb(0,51,204)",
+                "background-opacity": 1.0,
+                "font-size": 12,
+                "color": "rgb(0,0,0)",
+                "background-color": "rgb(255,255,255)",
+                "content": "data(label)"
+            }
+        }, {
+            "selector": "node:selected",
+            "css": {
+                "background-color": "rgb(255,255,0)"
+            }
+        }, {
+            "selector": "edge",
+            "css": {
+                "font-size": 10,
+                "font-family": "Dialog.plain",
+                "font-weight": "normal",
+                "source-arrow-shape": "none",
+                "color": "rgb(0,0,0)",
+                "content": "",
+                "opacity": 1.0,
+                "text-opacity": 1.0,
+                "source-arrow-color": "rgb(0,0,0)",
+                "line-color": "rgb(132,132,132)",
+                "width": 2.0,
+                "target-arrow-color": "rgb(0,0,0)",
+                "line-style": "solid",
+                "target-arrow-shape": "triangle"
+            }
+        }, {
+            "selector": "edge:selected",
+            "css": {
+                "line-color": "rgb(255,0,0)"
+            }
+        }]
+    }
+]
 
 def global2cyjs(soup):
     # entries = soup.find_all('entry')
@@ -346,6 +403,7 @@ def wp2cyelements(identifier):
             data["y"] = float(g["CenterY"])
             data["width"] = g["Width"]
             data["height"] = g["Height"]
+            data["type"] = "Metabolite"
 
             xref = wpn.find("Xref")
             if xref is not None:
