@@ -347,7 +347,7 @@ def escher2cyelements(escher_json_url):
     r = requests.get(escher_json_url)
     data = json.loads(r.content)
     escher_nodes = data[1]["nodes"]
-    #   escher_edges =
+    escher_edges = data[1]["reactions"]
 
     cyelements = {}
     cynodes = []
@@ -355,19 +355,33 @@ def escher2cyelements(escher_json_url):
     #nodeids = []
 
     for k, v in escher_nodes.items():
+        data = {}
+        data["id"] = k
+        data["x"] = float(v["x"])
+        data["y"] = float(v["y"])
+        data["node_type"] = v["node_type"]
         if v["node_type"] == "metabolite":
-            data = {}
-            data["id"] = k
             data["bigg_id"] = v["bigg_id"]
             data["label"] = v["name"]
-            data["x"] = float(v["x"])
-            data["y"] = float(v["y"])
-            cynode = {
-                "data": data,
-                "position": {"x": float(v["x"]), "y": float(v["y"])},
-                "selected": "false",
-            }
-            cynodes.append(cynode)
+        cynode = {
+            "data": data,
+            "position": {"x": float(v["x"]), "y": float(v["y"])},
+            "selected": "false",
+        }
+        cynodes.append(cynode)
+
+    for k, v in escher_edges.items():
+        reaction_name = v["name"]
+        bigg_id = v["bigg_id"]
+        gene_reaction_rule = v["gene_reaction_rule"]
+        segments = v["segments"]
+        for edge_id, segment in segments.items():
+            ed = {}
+            ed["source"] = segment["from_node_id"]
+            ed["target"] = segment["to_node_id"]
+            ed["id"] = edge_id
+            cyedge = {"data": ed}
+            cyedges.append(cyedge)
 
     cyelements["nodes"] = cynodes
     cyelements["edges"] = cyedges
