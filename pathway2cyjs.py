@@ -380,6 +380,9 @@ def escher2cyelements(escher_json_url):
             ed["source"] = segment["from_node_id"]
             ed["target"] = segment["to_node_id"]
             ed["id"] = edge_id
+            ed["reaction_name"] = reaction_name
+            ed["bigg_id"] = bigg_id
+            ed["gene_reaction_rule"] = gene_reaction_rule
             cyedge = {"data": ed}
             cyedges.append(cyedge)
 
